@@ -5,6 +5,7 @@ const popup = () =>{
     popupCheck = document.querySelector(".popup-check");
 
     document.addEventListener("click", (event) =>{
+        event.preventDefault();
         const target = event.target;
         if (target.matches(".discount-btn")) {
             popupDiscountForm.style.display = "block";
