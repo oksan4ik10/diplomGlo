@@ -1,3 +1,4 @@
+'use strict';
 const popupCall = () =>{
     const callBtn = document.querySelectorAll(".call-btn"),
     popupCall = document.querySelector(".popup-call");
