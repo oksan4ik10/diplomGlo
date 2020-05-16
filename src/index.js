@@ -1,2 +1,3 @@
-import './js/1.js';
-import './js/2.js';
+import popupCall from "./js/popupCall";
+
+popupCall();
