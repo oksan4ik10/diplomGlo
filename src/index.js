@@ -1,8 +1,7 @@
 'use strict';
-import popupCall from "./js/popupCall";
+import popup from "./js/popup";
 import addSentence from "./js/addSentence";
-import popupDiscount from "./js/popupDiscount";
 
-popupCall();
+
+popup();
 addSentence();
-popupDiscount();
