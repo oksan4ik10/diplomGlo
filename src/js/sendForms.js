@@ -1,7 +1,9 @@
 'use strict';
 const sendForms = () =>{
     const captureForm = document.querySelector(".capture-form"),
-    mainForm = document.querySelector(".main-form");
+    mainForm = document.querySelector(".main-form"),
+    directorForm = document.querySelector(".director-form"),
+    popupConsultation = document.querySelector(".popup-consultation");
 
 
     const messageTextLoad = "Отправка...",
@@ -17,7 +19,7 @@ const sendForms = () =>{
     }
     const message = createElemMessage();    
 
-    
+    let body = {};
     function sendForm (form){
             
         if (!form.querySelector(".message-text"))form.append(message);     
@@ -27,17 +29,18 @@ const sendForms = () =>{
 
          if (!/\+|\d{8,18}/g.test(phoneForm.value)){
             message.textContent = "Телефон введен неверно"
-            return;git 
+            return;
 
         }
 
        message.textContent = messageTextLoad;
         //забираем данные с формы
-        let body = {};
         const formData = new FormData(form);
         formData.forEach((val, key) => {
             body[key] = val;            
         });
+
+   
 
         //соединение с сервером
         postData (body)
@@ -50,6 +53,8 @@ const sendForms = () =>{
                         input.value = "";
                         });
                        
+                        
+                    body = {};   
                     message.textContent = messageTextsSend;
 
                 }
@@ -89,6 +94,28 @@ const sendForms = () =>{
         sendForm(mainForm);
         
     })
+
+    popupConsultation.addEventListener("click", (event)=>{
+        event.preventDefault();
+        const target = event.target;
+        if (!target.matches(".capture-form-btn")) return;
+        sendForm(popupConsultation.querySelector("form"));
+        
+    })
+
+    directorForm.addEventListener("click", (event)=>{
+        const target = event.target;
+        if (target.matches(".consultation-btn")){
+            const question = directorForm.querySelector("[name=user_quest]");
+            body["user_quest"] = question.value;
+            popupConsultation.style.display = "block";
+            
+        }else{
+            return;
+        }
+
+    })
+    
 
 
 
