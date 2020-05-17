@@ -47,9 +47,6 @@ const calcAccordion = (callback)=>{
 
                             if ((target.closest("#collapseThree"))&& !checkBottom) {
                                 calcRes -=1000;
-                                console.log(12);
-                                
-
                             } 
                             if (target.closest("#collapseThree")) dataCalc["bottom"] = "no";
                            
