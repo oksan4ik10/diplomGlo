@@ -25,16 +25,40 @@ const popup = () =>{
         if (target.matches(".consultation-btn")) return;
    
 
-        if(target.matches(".popup-close") || (!target.closest(".capture-form")))  {
+        if(target.matches(".popup-close") || ((!target.closest(".capture-form")) &&(target.matches(".popup-call")))) {
+            
             popupDiscountForm.style.display = "none";
             popupCallForm.style.display = "none";
             popupCheck.style.display = "none";
             popupConsultation.style.display = "none";
+            clearForm(popupDiscountForm.querySelector("form"));
+            clearForm(popupCallForm.querySelector("form"));
+            clearForm(popupCheck.querySelector("form"));
+            clearForm(popupConsultation.querySelector("form"));
+            
+
 
         };
 
         
     });
+
+    //очищение формы 
+    const clearForm = (form) =>{
+        let body = {};
+        const formData = new FormData(form);
+        formData.forEach((val, key) => {
+            body[key] = val;            
+        });
+        formData.forEach((val, key) => {
+            const input = form.querySelector(`[name=${key}]`);
+            input.value = "";
+        });
+        const message = form.querySelector(".message-text");
+        if (message) message.remove();
+
+
+    }
     
 };
 

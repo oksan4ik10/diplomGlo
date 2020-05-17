@@ -1,9 +1,22 @@
 'use strict';
+
+import calcAccordion from "./calcAccordion";
+
 const sendForms = () =>{
     const captureForm = document.querySelector(".capture-form"),
     mainForm = document.querySelector(".main-form"),
     directorForm = document.querySelector(".director-form"),
-    popupConsultation = document.querySelector(".popup-consultation");
+    popupConsultation = document.querySelector(".popup-consultation"),
+    popupCall = document.querySelector(".popup-call"),
+    accordion = document.getElementById("accordion");
+
+
+    let test;
+    calcAccordion((res)=> test = res);
+
+    
+  
+    
 
 
     const messageTextLoad = "Отправка...",
@@ -21,7 +34,7 @@ const sendForms = () =>{
 
     let body = {};
     function sendForm (form){
-            
+
         if (!form.querySelector(".message-text"))form.append(message);     
 
          //проверка на телефон
@@ -100,6 +113,18 @@ const sendForms = () =>{
         const target = event.target;
         if (!target.matches(".capture-form-btn")) return;
         sendForm(popupConsultation.querySelector("form"));
+
+        
+    });
+
+    popupCall.addEventListener("click", (event) => {
+        event.preventDefault();
+        const target = event.target;
+        if (!target.matches(".capture-form-btn")) return;
+        body = Object.assign({}, test);
+        sendForm(popupCall.querySelector("form"));
+    
+      
         
     })
 
@@ -121,12 +146,20 @@ const sendForms = () =>{
 
     //запрет ввода данных
     const phoneUser = document.querySelectorAll(".phone-user"), 
-    userName = document.querySelectorAll("[name=user_name]");
+    userName = document.querySelectorAll("[name=user_name]"),
+    collapseFourInput = document.getElementById("collapseFour").querySelector("input");
+    
     phoneUser.forEach((el) =>{
         el.addEventListener("input", ()=>{
             el.value = el.value.replace(/[^0-9\+]/g,"");
+            
         })
+    });
+    collapseFourInput.addEventListener("input", () =>{
+        collapseFourInput.value = collapseFourInput.value.replace(/[^0-9\+]/g,"");
+
     })
+
     userName.forEach((el) =>{
         el.addEventListener("input", ()=>{
             el.value = el.value.replace(/[^А-Я\s]/i,"");

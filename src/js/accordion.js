@@ -1,7 +1,20 @@
 'use strict';
 const accordion = () =>{
     const slideInDown = document.querySelector (".slideInDown "),
-    panelBody = slideInDown.querySelectorAll("[role=tabpanel]");
+    accordionCalc = document.querySelector("#accordion");
+   
+
+    function changeSlide(slide){
+        const panelBody = slide.querySelectorAll("[role=tabpanel]");
+        slide.addEventListener("click", (event) =>{
+            event.preventDefault();
+            const target = event.target.closest(".panel-heading");
+            if(!target) return;
+            removeClass(panelBody);
+            target.nextElementSibling.classList.add("in");
+        });
+
+    }
     
     function removeClass (panel){
         panel.forEach((el) =>{
@@ -10,13 +23,8 @@ const accordion = () =>{
 
     }
     
-    slideInDown.addEventListener("click", (event) =>{
-        event.preventDefault();
-        const target = event.target.closest(".panel-heading");
-        if(!target) return;
-        removeClass(panelBody);
-        target.nextElementSibling.classList.add("in");
-    });
+    changeSlide(slideInDown);
+    changeSlide(accordionCalc);
     
 };
 
