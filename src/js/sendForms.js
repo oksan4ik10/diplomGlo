@@ -14,11 +14,6 @@ const sendForms = () =>{
     let test;
     calcAccordion((res)=> test = res);
 
-    
-  
-    
-
-
     const messageTextLoad = "Отправка...",
     messageTextError = "Ошибка",
     messageTextsSend = "Отправлено";
@@ -35,7 +30,11 @@ const sendForms = () =>{
     let body = {};
     function sendForm (form){
 
-        if (!form.querySelector(".message-text"))form.append(message);     
+        if (!form.querySelector(".message-text")){
+            form.append(message);  
+            setTimeout (()=>{ message.remove()}, 5000)
+
+        }   
 
          //проверка на телефон
          const phoneForm = form.querySelector(".phone-user");
