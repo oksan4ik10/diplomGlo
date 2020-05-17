@@ -21,6 +21,11 @@ const calcAccordion = (callback)=>{
 
     accordionCalc.addEventListener("click", (event)=>{
         const target = event.target;
+
+        if (!((target.closest(".onoffswitch"))|| (target.closest(".construct-btn")) || (target.closest("select")) )){
+            return;
+        };
+        
   
         if(!target.closest("#collapseThree")) calcRes = second(calcAdd);
         //смена чекбокса        
@@ -40,7 +45,12 @@ const calcAccordion = (callback)=>{
                             }
                             if ((target.closest("#collapseThree"))&& checkBottom) calcRes -=2000;
 
-                            if ((target.closest("#collapseThree"))&& !checkBottom) calcRes -=1000;
+                            if ((target.closest("#collapseThree"))&& !checkBottom) {
+                                calcRes -=1000;
+                                console.log(12);
+                                
+
+                            } 
                             if (target.closest("#collapseThree")) dataCalc["bottom"] = "no";
                            
                         }
