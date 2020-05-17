@@ -126,9 +126,7 @@ const calcAccordion = (callback)=>{
     const reset = ()=>{
         myonoffswitchTwo.removeAttribute("checked");
         formControl.forEach((el) =>{
-            el.value =el.options[0];
-            // el.setAttribute("selected","first");
-            // el.options[0].setAttribute("value","first");         
+         el.options.selectedIndex = 0;
         })
         
         
