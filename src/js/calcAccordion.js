@@ -122,17 +122,8 @@ const calcAccordion = (callback)=>{
         return res;
     }
 
-    //сброс всех данных
-    const reset = ()=>{
-        myonoffswitchTwo.removeAttribute("checked");
-        formControl.forEach((el) =>{
-         el.options.selectedIndex = 0;
-        })
-        
-        
 
-    }
-    // reset();
+
 
     //получение данных со второго шага в объект
     const addData = () =>{

@@ -1,6 +1,7 @@
 'use strict';
 
 import calcAccordion from "./calcAccordion";
+import resetCalcForm from "./resetCalcForm";
 
 const sendForms = () =>{
     const captureForm = document.querySelector(".capture-form"),
@@ -58,6 +59,7 @@ const sendForms = () =>{
         postData (body)
             .then(res =>{
                 if (res.status === 200)  {
+                    resetCalcForm();
                   
                         //очищене полей формы после отправки
                         formData.forEach((val, key) => {
@@ -132,6 +134,7 @@ const sendForms = () =>{
         if (target.matches(".consultation-btn")){
             const question = directorForm.querySelector("[name=user_quest]");
             body["user_quest"] = question.value;
+            question.value = "";
             popupConsultation.style.display = "block";
             
         }else{
