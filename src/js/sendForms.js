@@ -9,7 +9,9 @@ const sendForms = () =>{
     directorForm = document.querySelector(".director-form"),
     popupConsultation = document.querySelector(".popup-consultation"),
     popupCall = document.querySelector(".popup-call"),
-    accordion = document.getElementById("accordion");
+    accordion = document.getElementById("accordion"),
+    popupCheck = document.querySelector(".popup-check"),
+    popupDiscount = document.querySelector(".popup-discount");
 
 
     let test;
@@ -127,7 +129,23 @@ const sendForms = () =>{
     
       
         
-    })
+    });
+
+    popupCheck.addEventListener("click", () =>{
+        event.preventDefault();
+        const target = event.target;
+        if (!target.matches(".capture-form-btn")) return;
+        sendForm(popupCheck.querySelector("form"));
+
+    });
+
+    popupDiscount.addEventListener("click", () =>{
+        event.preventDefault();
+        const target = event.target;
+        if (!target.matches(".capture-form-btn")) return;
+        sendForm(popupDiscount.querySelector("form"));
+
+    });
 
     directorForm.addEventListener("click", (event)=>{
         const target = event.target;
